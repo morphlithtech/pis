@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Delete Account &amp; Data - Enpis</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+        "Helvetica Neue", Arial, sans-serif;
+      line-height: 1.7;
+      color: #222;
+      background-color: #fafafa;
+      padding: 24px 16px;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    h1 {
+      font-size: 24px;
+      font-weight: 700;
+      margin-bottom: 8px;
+      color: #111;
+    }
+
+    p {
+      font-size: 14px;
+      color: #444;
+      margin-bottom: 16px;
+    }
+
+    .warning-box {
+      background-color: #fff3f3;
+      border: 1px solid #e8b4b4;
+      border-radius: 8px;
+      padding: 16px;
+      margin-bottom: 24px;
+    }
+
+    .warning-box h3 {
+      font-size: 14px;
+      font-weight: 600;
+      color: #b91c1c;
+      margin-bottom: 8px;
+    }
+
+    .warning-box ul {
+      padding-left: 20px;
+      margin: 0;
+    }
+
+    .warning-box ul li {
+      font-size: 13px;
+      color: #7f1d1d;
+      margin-bottom: 4px;
+    }
+
+    .form-group {
+      margin-bottom: 16px;
+    }
+
+    label {
+      display: block;
+      font-size: 13px;
+      font-weight: 600;
+      color: #333;
+      margin-bottom: 6px;
+    }
+
+    input[type="email"],
+    textarea {
+      width: 100%;
+      padding: 12px 14px;
+      font-size: 14px;
+      border: 1px solid #d1d5db;
+      border-radius: 8px;
+      background-color: #fff;
+      color: #222;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+
+    input[type="email"]:focus,
+    textarea:focus {
+      border-color: #00A86D;
+      box-shadow: 0 0 0 3px rgba(0, 168, 109, 0.1);
+    }
+
+    textarea {
+      min-height: 80px;
+      resize: vertical;
+    }
+
+    .checkbox-group {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+
+    .checkbox-group input[type="checkbox"] {
+      margin-top: 3px;
+      width: 16px;
+      height: 16px;
+      accent-color: #b91c1c;
+    }
+
+    .checkbox-group label {
+      font-size: 13px;
+      font-weight: 400;
+      color: #444;
+      margin-bottom: 0;
+    }
+
+    .submit-btn {
+      width: 100%;
+      padding: 14px;
+      font-size: 15px;
+      font-weight: 600;
+      color: #fff;
+      background-color: #b91c1c;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background-color 0.2s;
+    }
+
+    .submit-btn:hover {
+      background-color: #991b1b;
+    }
+
+    .submit-btn:disabled {
+      background-color: #ccc;
+      cursor: not-allowed;
+    }
+
+    .divider {
+      border: none;
+      border-top: 1px solid #e0e0e0;
+      margin: 28px 0;
+    }
+
+    .info-section {
+      background-color: #f0fdf4;
+      border: 1px solid #bbf7d0;
+      border-radius: 8px;
+      padding: 16px;
+      margin-top: 24px;
+    }
+
+    .info-section h3 {
+      font-size: 14px;
+      font-weight: 600;
+      color: #166534;
+      margin-bottom: 8px;
+    }
+
+    .info-section p {
+      font-size: 13px;
+      color: #15803d;
+      margin-bottom: 4px;
+    }
+
+    .success-message {
+      display: none;
+      text-align: center;
+      padding: 40px 20px;
+    }
+
+    .success-message .icon {
+      font-size: 48px;
+      margin-bottom: 16px;
+    }
+
+    .success-message h2 {
+      font-size: 20px;
+      font-weight: 700;
+      color: #111;
+      margin-bottom: 8px;
+    }
+
+    .success-message p {
+      font-size: 14px;
+      color: #666;
+    }
+
+    .contact-info {
+      margin-top: 24px;
+      font-size: 13px;
+      color: #888;
+      text-align: center;
+    }
+
+    .contact-info a {
+      color: #00A86D;
+      text-decoration: none;
+    }
+
+    .contact-info a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+
+  <div id="form-section">
+    <h1>Delete Your Account &amp; Data</h1>
+    <p>
+      Use this form to request the deletion of your Enpis account and all
+      associated data. This action is permanent and cannot be undone.
+    </p>
+
+    <div class="warning-box">
+      <h3>What will be deleted:</h3>
+      <ul>
+        <li>Your user account and login credentials</li>
+        <li>Profile information (name, email, phone numbers, NIN, profile image)</li>
+        <li>Employment and role assignment data</li>
+        <li>Activity logs and task history</li>
+        <li>All data associated with your account on our servers</li>
+      </ul>
+    </div>
+
+    <form id="deletion-form" onsubmit="handleSubmit(event)">
+      <div class="form-group">
+        <label for="email">Email Address *</label>
+        <input
+          type="email"
+          id="email"
+          name="email"
+          placeholder="Enter the email associated with your account"
+          required
+        />
+      </div>
+
+      <div class="form-group">
+        <label for="reason">Reason for deletion (optional)</label>
+        <textarea
+          id="reason"
+          name="reason"
+          placeholder="Let us know why you'd like to delete your account..."
+        ></textarea>
+      </div>
+
+      <div class="checkbox-group">
+        <input type="checkbox" id="confirm" required />
+        <label for="confirm">
+          I understand that this action is <strong>permanent</strong> and all my
+          data will be permanently deleted. This cannot be undone.
+        </label>
+      </div>
+
+      <button type="submit" class="submit-btn" id="submit-btn">
+        Request Account Deletion
+      </button>
+    </form>
+
+    <div class="info-section">
+      <h3>What happens next?</h3>
+      <p>1. We will verify your identity using the email you provided.</p>
+      <p>2. You will receive a confirmation email within 48 hours.</p>
+      <p>3. Your account and data will be deleted within 30 days of confirmation.</p>
+      <p>4. You will receive a final notification once deletion is complete.</p>
+    </div>
+
+    <hr class="divider" />
+
+    <p class="contact-info">
+      Need help? Contact us at 0807 362 5555
+    </p>
+  </div>
+
+  <div id="success-section" class="success-message">
+    <div class="icon">&#10003;</div>
+    <h2>Deletion Request Submitted</h2>
+    <p>
+      We've received your request. You will receive a confirmation email at the
+      address you provided within 48 hours. Your account and data will be
+      permanently deleted within 30 days of confirmation.
+    </p>
+    <p class="contact-info" style="margin-top: 24px;">
+      If you did not make this request, please contact us immediately at
+      <a href="mailto:support@pis.com.ng">support@pis.com.ng</a>
+    </p>
+  </div>
+
+  <script>
+    function handleSubmit(event) {
+      event.preventDefault();
+
+      var btn = document.getElementById("submit-btn");
+      btn.disabled = true;
+      btn.textContent = "Submitting...";
+
+      var email = document.getElementById("email").value;
+      var reason = document.getElementById("reason").value;
+
+      fetch(
+        "https://pis-api.irs.en.gov.ng/api/v1/request-account-deletion",
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ email: email, reason: reason }),
+        }
+      )
+        .then(function (response) {
+          // Show success regardless — don't reveal whether the email exists
+          document.getElementById("form-section").style.display = "none";
+          document.getElementById("success-section").style.display = "block";
+        })
+        .catch(function () {
+          // Still show success to avoid email enumeration
+          document.getElementById("form-section").style.display = "none";
+          document.getElementById("success-section").style.display = "block";
+        });
+    }
+  </script>
+
+</body>
+</html>
